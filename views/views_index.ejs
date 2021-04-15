@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href='/css/todo.css'>
+
+</head>
+
+
+
+<!-- The Todo App ui is divided into three parts -->
+<!-- 1. top heading parts where app logo is and heading is placed -->
+<!-- 2. middle part where the Add-new and Delete-button is placed  -->
+<!-- 3. bottom part which is input  form for task, category and due-date -->
+<!-- Initially the bottom part is hidden. on clicking the add-new button, the form pops up -->
+
+
+
+
+
+<body id="Body">
+
+
+    <!-- Container_____________________________________________ -->
+
+    <div id="container">
+
+        <!-- _App heading__________________________________________________ -->
+        <div id="app-heading-div">
+
+            <h1 id="app-heading-text"> <img src="/images/app-icons.png" id="app-icon">TODO LIST</h1>
+
+            <div id="toggle-container">
+                <p id="light-text">Light</p>
+                <div id="toggle-switch"></div>
+                <p id="dark-text">Dark</p>
+            </div>
+        </div>
+
+
+        <!-- _________________________________________________________________ -->
+
+
+
+        <!--_________Task display Container: All Task are displayed inside this container____________________ -->
+        <div id="task-display-container">
+
+            <div id="No-task-div">
+                <img src="/images/add1.png" id="no-task-icon">
+                <p id="no-task-text"> Add your first Task</p>
+            </div>
+
+            <form action="/delete-task" method="POST" id="delete-form" name="delete-form">
+                <% for (let i of task_list){%>
+
+                <div id="task-wrapper">
+                    <div id="task-container">
+                        <div id="task-date-div">
+                            <div id="task-div">
+
+
+                                <!--____Checkboxes to select the task_________________-->
+                                <div id="checkbox-div">
+                                    <input id="checkbox" type="checkbox" name="<%=i.id %>">
+                                </div>
+                                <!-- _________________________________________________-->
+
+
+
+                                <!-- task________________ -->
+                                <p id="task-text"> <%= i.task %></p>
+                            </div>
+
+
+
+                            <!-- ___Date div_______________________________________ -->
+                            <div id="date-div">
+                                <img id="calender" src="/images/calender1.png">
+                                <p id="date-text"><%=i.date %></p>
+                            </div>
+                            <!-- ___________________________________________________-->
+                        </div>
+
+
+
+                        <!-- _____category div_________________________________ -->
+                        <div id="category-div">
+                            <p id="category-text"><%=i.category%></p>
+                        </div>
+                        <!-- __________________________________________________ -->
+
+
+                    </div>
+
+                </div>
+
+                <div id="division-line">
+
+                </div>
+
+                <% }%>
+            </form>
+
+
+        </div>
+        <div id="button-container">
+            <!-- ____________Delete Button_____________________________________________________________ -->
+            <button id="delete-btn" form="delete-form" type="submit"><img src="/images/delete-icon.png"
+                    id="delete-can">DELETE</button>
+            <div id="add-icon-div">
+                <div id="icon-img-div">
+                    <!-- <img src="/images/plus.png"> -->
+                </div>
+                <p id="add-new-text">ADD NEW</p>
+            </div>
+        </div>
+
+
+
+
+        <form action="/new-task" name="input-form" method="POST" id="input-form">
+
+            <div id="task-input-container">
+                <div id="task-input-div">
+                    <div id="task-heading-div">
+                        <p>DESCRIPTION</p>
+                    </div>
+                    <!-- _____task input__________________________________________________________________- -->
+                    <input type="text" id="task-input" name="task" placeholder="What do you need to do?" required>
+                </div>
+            </div>
+
+            <div id="category-date-container">
+
+
+
+                <div id="category-input-div">
+                    <div id="category-heading-div">
+                        <p>CATEGORY</p>
+                    </div>
+                    <!-- _____________Category  input__________________________________________________________-->
+                    <input type="text" name="category" placeholder="Choose a category" list="categorylist" required>
+                    <datalist id="categorylist">
+                        <option value="Personal">
+                        <option value="Work">
+                        <option value="School">
+                        <option value="Home">
+                        <option value="Other">
+                    </datalist>
+                </div>
+                <div id="date-input-div">
+                    <div id="date-heading-div">
+                        <p>DUE DATE</p>
+                    </div>
+                    <!-- _______________Date input_____________________________________________________ -->
+                    <input type="date" id="date-input" name="date" placeholder="dd/mm/yyyy" required>
+                </div>
+
+            </div>
+            <!-- _____________________Save Button OR submit button__________________ -->
+            <button form="input-form" id="add-btn" type="submit"> <img src="/images/save-icon.png"> SAVE</button>
+
+
+        </form>
+        <!-- </div> -->
+    </div>
+
+
+
+    <script src="/js/todo.js"></script>
+</body>
+
+
+
+</html>

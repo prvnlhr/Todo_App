@@ -1,0 +1,769 @@
+body {
+  width: 98vw;
+  height: 97vh;
+  background-color: #e5edf2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-image: url(/images/bg2.jpg);
+  background-color: rgb(255 255 255 / 38%);
+  backdrop-filter: blur(20px);
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+#container {
+  position: relative;
+  width: 50%;
+  height: 90%;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  /*   justify-content: center; */
+  align-items: center;
+  border-radius: 20px;
+}
+#No-task-div {
+  display: none;
+  width: 300px;
+  height: 100px;
+  margin: 20% auto 0px auto;
+  /* display: flex; */
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  /* border: 1px solid black; */
+}
+#No-task-div p {
+  margin: 0px 0px 0px 0px;
+  font-weight: 550;
+  color: #666666;
+  font-size: 20px;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+.No-task-div-show {
+  display: flex !important;
+  /* border: 1px solid black; */
+}
+.no-task-light-text {
+  color: white !important;
+}
+
+/* ___App heading Rules___________________________ */
+
+#app-heading-div {
+  position: relative;
+  top: 0px;
+  width: 98%;
+  height: 50px;
+  /* border:1px solid black; */
+  margin: 1% 0px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 10%), 0 3px 6px rgba(0, 0, 0, 0.23);
+  /* background-color: rgb(255 255 255 / 38%); */
+  background-color: #f1f8fd85;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: sans-serif;
+  color: #678279;
+}
+#app-heading-div img {
+  position: absolute;
+  margin-left: -45px;
+  top: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+/* ______Dark Mode toggle Rules________________________________ */
+#toggle-container {
+  position: absolute;
+  width: 75px;
+  height: 20px;
+  /*border: 1px solid #00000024; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
+  right: 5%;
+}
+#toggle-container:hover {
+  cursor: pointer;
+}
+#toggle-switch {
+  position: absolute;
+  width: 45%;
+  height: 16px;
+  /*border: 1px solid white; */
+  border-radius: 20px;
+  margin-left: -36px;
+  /*margin-top: -1px; */
+  transition: 300ms ease;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+#light-text {
+  /* 	position:absolute; */
+  left: 0px;
+  font-size: 10px;
+  color: black;
+  z-index: 10;
+  font-weight: 600;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+#dark-text {
+  /* 	position: absolute; */
+  right: 0px;
+  font-size: 10px;
+  font-weight: 600;
+
+  margin: 0px 0px 0px 0px;
+  color: black;
+  z-index: 10;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+/* __________Rules releated to display container where task is displayed____________ */
+#task-display-container {
+  width: 98%;
+  height: 98%;
+  margin: 1px 0px 0px 0px;
+  /*border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  border-radius: 0px 0px 0px 0px;
+  /*   justify-content: center; */
+  /*   margin: 0px 0px 0px 5px; */
+  box-shadow: 0 3px 6px rgb(0 0 0 / 10%), 0 3px 6px rgba(0, 0, 0, 0.23);
+  /*   background-color: rgb(255 255 255 / 38%); */
+  background-color: #f1f8fd85;
+  backdrop-filter: blur(10px);
+  overflow-y: scroll;
+  transition: 200ms ease;
+}
+.shrink {
+  height: 60% !important;
+}
+#task-display-container::-webkit-scrollbar {
+  display: none;
+}
+#task-wrapper {
+  width: 92%;
+  height: 70px;
+  position: relative;
+  /*   border-bottom: 1px solid #2121211f; */
+  display: flex;
+  /*   justify-content: center; */
+  align-items: center;
+  margin: 1% auto 1% auto;
+  transition: 200ms ease;
+}
+#division-line {
+  width: 90%;
+  /*   border: 1px solid black; */
+  height: 1px;
+  margin: 0px auto 0px auto;
+  background-color: #00000036;
+}
+
+.selected {
+  transform: scale(0.95) !important;
+  background-color: #7b87891f !important;
+  border-radius: 10px !important;
+  border-bottom: 1px solid #8d8c8c00 !important;
+}
+
+#task-container {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  width: 100%;
+  height: 100%;
+  /*border: 1px solid blue; */
+  display: flex;
+  /* justify-content:center; */
+  align-items: center;
+  /*margin: 0px 0px 0px 1%; */
+  transition: 300ms ease;
+}
+#checkbox-div {
+  width: 20px;
+  height: 20px;
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px 0px 0px 2%;
+}
+#checkbox-div input:hover {
+  cursor: pointer;
+}
+
+#task-date-div {
+  width: 80%;
+  height: 90%;
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  /*grid-gap:2px; */
+}
+
+#task-div {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  width: 98%;
+  height: 92%;
+  /* border: 1px solid black; */
+  display: flex;
+  /*justify-content: center; */
+  flex-direction: row;
+  align-items: center;
+}
+
+#task-div p {
+  margin: 2px 0px 0px 10px;
+  /* font-family: sans-serif; */
+  font-size: 14px;
+  font-weight: 550;
+  letter-spacing: 0.7px;
+  color: #52565a;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+.strike {
+  text-decoration: line-through;
+}
+
+#date-div {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  width: 98%;
+  height: 92%;
+  /*border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  /*align-items: center; */
+}
+#date-div img {
+  margin: 0px 0px 0px 33px;
+  width: 18px;
+  height: 18px;
+}
+#date-div p {
+  margin: 3px 0px 0px 5px;
+  /* font-family: sans-serif; */
+  font-size: 12px;
+  font-weight: bold;
+  color: #6d6565;
+  letter-spacing: 0.2px;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  /*text-decoration:underline; */
+}
+
+/* ___Category Divs Styling_______________ */
+#category-div {
+  /*position:absolute; */
+  margin: 0px 2% 0px 0px;
+  right: 2%;
+  width: 80px;
+  height: 25px;
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.color1 {
+  background-color: #ac92eb;
+}
+.color2 {
+  background-color: #ed5564;
+}
+.color3 {
+  background-color: #a0d568;
+}
+.color4 {
+  background-color: #ffce54;
+}
+.color5 {
+  background-color: #4fc1e8;
+}
+#category-div p {
+  color: white;
+  /* font-family: sans-serif; */
+  margin: 0px 0px 0px 0px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+/* ______Delete button Rules__________________ */
+#delete-btn-div {
+  position: absolute;
+  right: 0;
+  width: 0px;
+  height: 100%;
+  /*border: 1px solid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*border-radius: 30% 0px 0px 30%; */
+  overflow: hidden;
+  transition: 300ms ease;
+}
+.show-del-btn {
+  width: 15% !important;
+  /*background-color: crimson; */
+  /*border-radius:10px 0px 0px 10px; */
+}
+.change-color {
+  width: 84.5% !important;
+  border-right: 1px solid black;
+}
+
+#button-container {
+  /* border: 1px solid black; */
+  width: 98%;
+  height: 8%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  /*background-color: rgb(255 255 255 / 38%); */
+  background-color: #f1f8fd85;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  border-radius: 0px 0px 20px 20px;
+  margin: 1px auto 1px auto;
+}
+
+.Add-border-radius {
+  border-radius: 0px 0px 0px 0px !important;
+}
+
+/* ___________Input form rules_______________________________ */
+
+#input-form {
+  position: relative;
+  display: grid;
+  grid-template-rows: 0.6fr 1fr;
+  /* border: 1px solid black; */
+  width: 98%;
+  height: 0%;
+  /* justify-content: center; */
+  align-items: center;
+  grid-gap: 2px;
+  margin: 0px auto 0px auto;
+  border-radius: 0px 0px 20px 20px;
+  /* background-color: white; */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  /* background-color: rgb(255 255 255 / 38%); */
+  background-color: #f1f8fdf2;
+  backdrop-filter: blur(0px);
+  overflow: hidden;
+  transition: 200ms ease;
+}
+
+.expand {
+  height: 30% !important;
+}
+
+#task-input-container {
+  margin: 0px auto 0px auto;
+  position: relative;
+  /*border: 1px solid black; */
+  grid-row-start: 1;
+  grid-row-end: 2;
+  width: 98%;
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#task-input-div {
+  width: 98%;
+  height: 90%;
+  /*   border: 1px solid black; */
+}
+
+#task-input-container p {
+  font-family: sans-serif;
+  font-size: 12px;
+  margin: 2% 0px 0px 2%;
+  font-weight: 550;
+  color: #020202;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+#task-input-container input {
+  width: 50%;
+  margin: 1% 0px 0px 2%;
+  outline: none;
+  border-bottom: 1px solid #8080807d;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  background: transparent;
+  font-family: sans-serif;
+  color: #058bf8;
+}
+
+#category-date-container {
+  margin: 0px auto 0px auto;
+  width: 98%;
+  height: 96%;
+  /*border: 1px solid black; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1%;
+}
+
+#category-input-div {
+  margin: 0px auto 0px auto;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  width: 100%;
+  height: 100%;
+  /*border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center; */
+  padding-left: 10px;
+  /*align-items: center; */
+}
+#category-input-div p {
+  /* font-family: sans-serif; */
+  font-size: 12px;
+  margin: 5% 0px 0px 2%;
+  font-weight: 550;
+  color: #000000;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+#category-input-div input {
+  width: 150px;
+  margin: 2% 0px 2% 2%;
+  outline: none;
+  border-bottom: 1px solid #8080807d;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  background: transparent;
+  font-family: sans-serif;
+  color: #ff5722;
+  font-weight: bold;
+}
+
+#date-input-div {
+  position: relative;
+  margin: 0px 0px 0px 0px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: 90%;
+  height: 100%;
+  /*border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center; */
+  /*align-items: center; */
+}
+
+#date-input-div input {
+  width: 130px;
+  margin: 2% 0% 2% 40%;
+  outline: none;
+  /*border: none; */
+  border-bottom: 1px solid #8080807d;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  background: transparent;
+  font-family: sans-serif;
+  color: #409837;
+  font-weight: bold;
+}
+#date-input-div p {
+  /*position: absolute; */
+  width: 100px;
+  /* font-family: sans-serif; */
+  font-size: 12px;
+  font-weight: 550;
+  color: #000000;
+  margin: 5% 0px 0px 40%;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+/* __________Add button Rules_____________________________ */
+#add-btn {
+  position: absolute;
+  left: 42%;
+  bottom: 5px;
+  width: 80px;
+  height: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  background-color: grey;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: rgb(255 255 255 / 38%);
+  /*background-color:#0888dcc7; */
+  backdrop-filter: blur(20px);
+  outline: none;
+  /* font-family: sans-serif; */
+  font-size: 12px;
+  font-weight: 600;
+  color: black;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+#add-btn img {
+  width: 18px;
+  height: 18px;
+  margin: 0px 0px 0px 0px;
+  /* border:1px solid black; */
+}
+#add-btn:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+#delete-btn {
+  width: 90px;
+  height: 28px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  background-color: grey;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: rgb(255 255 255 / 38%);
+  backdrop-filter: blur(20px);
+  outline: none;
+  /* font-family: sans-serif; */
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+#delete-btn:hover {
+  cursor: pointer;
+}
+.active {
+  background: #f85032;
+  background: -webkit-linear-gradient(to right, #e73827, #f85032);
+  background: linear-gradient(to right, #e73827, #f85032);
+}
+#delete-btn img {
+  width: 22px;
+  height: 22px;
+  /* margin:0px 5px 0px 0px; */
+}
+
+#add-icon-div {
+  /*border: 1px solid black; */
+  position: relative;
+  width: 92px;
+  height: 25px;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  /* justify-content: space-evenly; */
+  /* align-items: center; */
+  /* border-radius: 50%; */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: rgb(255 255 255 / 38%);
+  backdrop-filter: blur(20px);
+  border: none;
+  border-radius: 20px;
+}
+
+#add-icon-div:hover {
+  cursor: pointer;
+}
+
+#icon-img-div {
+  /*position: absolute; */
+  position: relative;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  /*   border: 1px solid black; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-image: url(/images/plus.png);
+  background-size: cover;
+  background-position: center;
+  width: 15px;
+  height: 15px;
+  margin: 15% 2px 0px 28%;
+  /*top: 5px; */
+  /*left: 8px; */
+  transition: 200ms ease;
+}
+.change-img {
+  /*position:absolute; */
+  background-image: url(/images/down-arrow.png) !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 20% 8px 0px 28% !important;
+}
+#add-icon-div p {
+  margin: 5px 0px 0px 0px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  font-family: sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+/*_____________________________ Dark Mode Classes_____________________*/
+
+.toggled-div-color {
+  background-color: white !important;
+}
+.toggled {
+  margin-left: 37px !important;
+  background-color: black !important;
+}
+.light-text {
+  color: white !important;
+}
+
+.darkBg {
+  background: none;
+  background-color: #374156 !important;
+}
+.dark-theme {
+  background-color: #0e1227 !important;
+}
+.btn-color {
+  background-color: white !important;
+}
+
+.dark-task-text {
+  color: #d1d1d6 !important;
+}
+.dark-date-text {
+  color: #828387 !important;
+}
+.dark-division-line {
+  background-color: #ffffff26 !important;
+}
+
+/*_______________________________ Media Querie____________________________________ */
+
+@media screen and (max-width: 850px) {
+  #container {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 600px) {
+  #date-input-div input {
+    margin: 0px 0px 0px 30%;
+  }
+  #date-input-div p {
+    margin: 5% 0px 0px 30%;
+  }
+}
+@media screen and (max-width: 550px) {
+  #add-btn {
+    left: 38%;
+  }
+
+  #date-input-div input {
+    top: 20%;
+    left: 20%;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  #button-container {
+    height: 50px !important;
+  }
+}
+
+@media screen and (max-height: 580px) {
+  #add-btn {
+    left: auto;
+    right: 45%;
+    width: 50px;
+    height: 23px;
+    font-size: 10px;
+    border-radius: 20px;
+  }
+  #add-btn img {
+    width: 12px;
+    height: 12px;
+    margin: 0px 2px 0px 0px;
+  }
+}
+@media screen and (max-height: 540px) {
+  #container {
+    /*     margin-top:20%; */
+    height: 95%;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  #category-input-div {
+    position: absolute;
+    top: 1%;
+    left: 55%;
+    height: 50px;
+    width: 156px;
+    /*border:1px solid black; */
+  }
+  #date-input-div {
+    /*position:absolute; */
+    right: 120%;
+    /*border:1px solid black; */
+    height: 40px;
+  }
+  #add-btn {
+    right: 15%;
+  }
+}
+@media screen and (max-height: 400px) {
+  #container {
+    height: 450px;
+    margin-bottom: 2%;
+    margin-top: auto;
+  }
+}
